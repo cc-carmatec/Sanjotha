@@ -1,0 +1,20 @@
+<html>
+    <body>
+        <p id="loc"></p>
+
+
+        <script type="text/javascript">
+            var a = document.getElementById("loc");
+
+                function jsonpCallback(data) { 
+              a.innerHTML = "Latitude: " + data.latitude + 
+                              "<br/>Longitude: " + data.longitude + 
+                              "<br/>Country: " + data.address.country; 
+              }
+        </script>
+        <script src="http://api.wipmania.com/jsonp?callback=jsonpCallback"
+                     type="text/javascript"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,98 @@
+<html ng-app="myApp">
+  <head>
+   
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+  </head>
+  <body  class="container">
+    <div  ng-controller="CartController">
+    <div class="panel panel-default">
+      <div class="panel-heading">New product</div>
+      <div class="panel-body">
+        <form ng-submit="add()" class="form-horizontal">
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Item</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" ng-model="item"/>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Price</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" ng-model="price"/>
+            </div>
+          </div>
+          
+          <div clas="form-group">
+            <label class="col-sm-2 control-label">Quantity</label>
+            <div class="col-sm-10">
+              <input type="range" min="1" max="500" ng-model="quantity"/> {{quantity}}
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+               <input type="submit" class="btn btn-default" value="Insert product" />
+            </div>
+          </div>
+        </form>
+        
+      </div>
+    </div>   
+    <table class="table" ng-show="cartData.length > 0">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Price</th>
+          <th colspan="2">Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="item in cartData">
+          <td>{{item.name}}</td>
+          <td>{{item.price | currency}}</td>
+          <td>{{item.quantity}}</td>
+          <td>
+            <button ng-click="remove($index)" class="btn btn-default">Remove</button>
+          </td>
+        </tr>
+      </tbody>  
+    </table>
+    </div>
+    <div ng-controller="InstantSearchController">
+      <div class="bar" >
+      <!-- Create a binding between the searchString model and the text field -->
+      <input type="text" ng-model="searchString" placeholder="Enter your search terms" />
+    </div>
+
+    <ul>
+      <!-- Render a li element for every entry in the items array. Notice
+         the custom search filter "searchFor". It takes the value of the
+         searchString model as an argument.
+       -->
+      <li ng-repeat="i in items | searchFor:searchString">
+        <a href="{{i.url}}"><img ng-src="{{i.image}}" /></a>
+        <p>{{i.title}}</p>
+      </li>
+    </ul>
+    </div>
+    <form>
+      <input name="title" type="text" placeholder="Title?" />
+      <textarea name="content" data-provide="markdown" rows="10"></textarea>
+      <label class="checkbox">
+        <input name="publish" type="checkbox"> Publish
+      </label>
+      <hr/>
+      <button type="submit" class="btn">Submit</button>
+    </form> 
+  </body>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+   <script type="text/javascript" src="js/app.js"></script> 
+   <script type="text/javascript">
+   $('input').attr({ maxLength : 30 });
+   $("textarea").markdown({autofocus:false,savable:false})
+   </script>  
+</html>

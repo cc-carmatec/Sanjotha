@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- meta information -->
+  <meta charset="UTF-8" />
+  <meta name="author"
+        content="Matt Wilcox" />
+  
+
+  <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+  <meta name="viewport"
+        content="width=device-width,initial-scale=1">
+        
+  <!-- Styling for all browsers -->
+  <link rel="stylesheet" media="screen" href="assets/css/screen.core.css" />
+  <link rel="stylesheet" media="print"  href="/assets/css/print.css" />
+
+  <!-- Styling for progressively larger displays -->
+<!--   <link rel="stylesheet" media="only screen and (min-width: 480px)"  href="/assets/css/screen.480.css" />
+  <link rel="stylesheet" media="only screen and (min-width: 768px)"  href="/assets/css/screen.768.css" />
+  <link rel="stylesheet" media="only screen and (min-width: 992px)"  href="/assets/css/screen.992.css" />
+  <link rel="stylesheet" media="only screen and (min-width: 1382px)" href="/assets/css/screen.1382.css" /> -->
+
+ 
+        
+  <!-- The Adaptive Images JavaScript  -->
+  <script>document.cookie='resolution='+Math.max(screen.width,screen.height)+'; path=/';</script>
+        
+  <!-- google analytics
+       NOTE:      This goes in the head because it's the new Asynchronous loader, read more here:
+       REFERENCE: http://code.google.com/apis/analytics/docs/tracking/asyncTracking.html -->
+  
+
+  <!-- Modernizr also goes in the head, to allow the HTML5 shiv to work for IE, and prevent FOUC.
+       REFERENCE: http://www.modernizr.com/docs/#installing -->
+  <script src="/assets/js/modernizr.custom.65394.js"></script>
+
+  <title>Adaptive Images in HTML</title>
+</head>
+
+<body lang="en-GB" class="home">
+
+<div class="container first">
+  <div class="content intro">
+    <div id="site_context">
+      <h1 class="title">Adaptive Images</h1>
+      <p class="rationale">Deliver small images to small devices</p>
+    </div>
+
+        
+   
+  </div><!-- /.content -->
+</div><!-- /.container -->
+
+<div class="container second">
+  <div class="content">
+    <div id="example">
+      <h2>Example in action</h2>
+      <div class="gallery">
+        <div class="image_main">
+          <img src="assets/img/03.jpg" alt="" />
+          <div class="meta">
+            <p class="credit">Photo credit: "<a href="http://www.flickr.com/photos/mattwilcox/5337294434/">Creepy Lane</a>", Matt Wilcox</p>
+            <p class="original">Original: <strong><i>850</i><abbr title="Kilobytes">Kb</abbr></strong> 1900px x 1069px</p>
+          </div>
+        </div>
+      
+        <div class="details">
+          <ul>
+            <li>
+              <img src="/assets/images/imac-27.png" alt="" />
+              <p>
+                <span class="size">Large</span>
+                <strong>
+                  <i>200</i><abbr title="Kilobytes">Kb</abbr>
+                </strong>
+                <span class="dimensions">1382px x 778px</span>
+              </p>
+            </li>
+            <li>
+              <img src="/assets/images/imac-21.png" alt="" />
+              <p>
+                <span class="size">Standard</span>
+                <strong>
+                  <i>100</i><abbr title="Kilobytes">Kb</abbr>
+                </strong>
+                <span class="dimensions">992px x 559px</span></p>
+            </li>
+            <li>
+              <img src="/assets/images/ipad.png" alt="" />
+              <p>
+                <span class="size">Tablets</span>
+                <strong>
+                  <i>70</i><abbr title="Kilobytes">Kb</abbr>
+                </strong>
+                <span class="dimensions">768px x 443px</span></p>
+            </li>
+            <li>
+              <img src="/assets/images/iphone-3g.png" alt="" />
+              <p>
+                <span class="size">Mobiles</span>
+                <strong>
+                  <i>30</i><abbr title="Kilobytes">Kb</abbr>
+                </strong>
+                <span class="dimensions">480px x 271px</span>
+              </p>
+            </li>
+          </ul>
+        </div><!-- /.details -->
+
+        <h3>More examples</h3>
+
+        <ul class="examples">
+          <li>
+            <a href="/content/images/creepy.jpg">
+              <img src="assets/img/01.jpg" alt="creepy"
+                   data-source="http://www.flickr.com/photos/mattwilcox/5337294434"
+                   data-credit="Creepy Lane"
+                   data-original="850"
+                   data-large="210"
+                   data-standard="117"
+                   data-ipad="74"
+                   data-iphone="30" />
+            </a>
+          </li>
+          <li>
+            <a href="/content/images/becca.jpg">
+              <img src="assets/img/01.jpg" alt="becca"
+                   data-source="http://www.flickr.com/photos/mattwilcox/5994915210"
+                   data-credit="Becca"
+                   data-original="568"
+                   data-large="126"
+                   data-standard="70"
+                   data-ipad="46"
+                   data-iphone="21" />
+            </a>
+          </li>
+          <li>
+            <a href="/content/images/becca-2.jpg">
+              <img src="assets/img/01.jpg" alt="becca collage"
+                   data-source="http://www.flickr.com/photos/mattwilcox/sets/72157625939659294"
+                   data-credit="Becca montage"
+                   data-original="588"
+                   data-large="151"
+                   data-standard="86"
+                   data-ipad="56"
+                   data-iphone="25" />
+            </a>
+          </li>
+          <li>
+            <a href="/content/images/heather.jpg">
+              <img src="assets/img/01.jpg" alt="heather"
+                   data-source="http://www.flickr.com/photos/mattwilcox/sets/72157626157228858"
+                   data-credit="Heather montage"
+                   data-original="523"
+                   data-large="129"
+                   data-standard="70"
+                   data-ipad="45"
+                   data-iphone="20" />
+            </a>
+          </li>
+          <li>
+            <a href="/content/images/sunset.jpg">
+              <img src="assets/img/01.jpg" alt="Sunset"
+                   data-source="http://www.flickr.com/photos/mattwilcox/6267274198"
+                   data-credit="Sunset"
+                   data-original="342"
+                   data-large="82"
+                   data-standard="49"
+                   data-ipad="34"
+                   data-iphone="14" />
+            </a>
+          </li>
+          <li>
+            <a href="/content/images/kirsty-2.jpg">
+              <img src="assets/img/01.jpg" alt="kirsty"
+                   data-source="http://www.flickr.com/photos/mattwilcox/4532409792"
+                   data-credit="Kirsty"
+                   data-original="1100"
+                   data-large="296"
+                   data-standard="164"
+                   data-ipad="102"
+                   data-iphone="41" />
+            </a>
+          </li>
+          <li>
+            <a href="/content/images/serious.jpg">
+              <img src="assets/img/01.jpg" alt="serious"
+                   data-source="http://www.flickr.com/photos/mattwilcox/4102135143"
+                   data-credit="Serious"
+                   data-original="631"
+                   data-large="140"
+                   data-standard="77"
+                   data-ipad="51"
+                   data-iphone="24" />
+            </a>
+          </li>
+          <li>
+            <a href="/content/images/winter.jpg">
+              <img src="assets/img/01.jpg" alt="winter"
+                   data-source="http://www.flickr.com/photos/mattwilcox/5282660979"
+                   data-credit="Winter"
+                   data-original="406"
+                   data-large="138"
+                   data-standard="70"
+                   data-ipad="45"
+                   data-iphone="20" />
+            </a>
+          </li>
+        </ul>
+      </div><!-- /.gallery -->
+    </div><!-- /#example -->
+  </div><!-- /.content -->
+</div><!-- /.container -->
+
+
+
+
+
+<!-- javascript
+     NOTE:      Javascript goes at the bottom of the page to enhance the perception of speed with page load.
+                Most browsers are limited to two simultaneous http requests, so if we loaded the JS before the HTML
+                the page would appear to load slowly (as it loads non-visible data before the visible data).
+     REFERENCE: http://developer.yahoo.com/performance/rules.html#js_bottom
+     NOTE:      I usually use lazy-loading so that a JS file scans the DOM, knows what JS files are needed and loads only
+                those. JS manages itself, the HTML doesn't need to change, no unused resources are ever loaded. -->
+<script src="/assets/js/script.js"></script>
+
+</body>
+</html>

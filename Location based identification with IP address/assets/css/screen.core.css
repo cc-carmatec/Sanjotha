@@ -1,0 +1,551 @@
+/*
+  SCREEN.CSS
+  This is where styles for on-screen media are declaired.
+  This is a responsive design, so this style sheet establishes the core styles used for all resolutions before declaring
+  the baseline 320px mobile version.
+   
+  --------------------------------------------------------------------------------------------------------------------------
+  FILE INFO
+  Last updated:     2011/12/02
+  Last updated by:  Matt Wilcox
+  ----------------------------------------------------------------------------------------------------------------------- */
+
+/*
+  =global_reset ---------------------------------------------------------------------------------------------------------
+  NOTE:       Trying out Eric Meyer's Reset 2.0 as a basis for this reset
+  REFERENCE:  http://meyerweb.com/eric/tools/css/reset/ 
+  ----------------------------------------------------------------------------------------------------------------------- */
+
+  html, body, div, span, applet, object, iframe,
+  h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+  a, abbr, acronym, address, big, cite, code,
+  del, dfn, em, img, ins, kbd, q, s, samp,
+  small, strike, strong, sub, sup, tt, var,
+  b, u, i, center,
+  dl, dt, dd, ol, ul, li,
+  fieldset, form, label, legend,
+  table, caption, tbody, tfoot, thead, tr, th, td,
+  article, aside, canvas, details, embed, 
+  figure, figcaption, footer, header, hgroup, 
+  menu, nav, output, ruby, section, summary,
+  time, mark, audio, video {
+    margin: 0; padding: 0; border: 0;
+    font-size: 100%; font: inherit; vertical-align: baseline;
+  }
+  /* HTML5 display-role reset for older browsers */
+  article, aside, details, figcaption, figure, 
+  footer, header, hgroup, menu, nav, section {
+    display: block; }
+  ol, ul {
+    list-style: none; }
+  blockquote, q {
+    quotes: none; }
+  blockquote:before, blockquote:after,
+  q:before, q:after {
+    content: ''; content: none; }
+  table {
+    border-collapse: collapse; border-spacing: 0; }
+     
+/*
+  =external_library_reset -----------------------------------------------------------------------------------------------
+  NOTE:       We use external libraries for some things, e.g., colorbox. Their style-sheets have issues with the
+              one I use, but for easier upgrading I over-ride their styles to stop conflicts here
+  ----------------------------------------------------------------------------------------------------------------------- */
+  div#colorbox img { margin-bottom : 1rem; }
+  div#colorbox div { margin : 0; }
+   
+/*
+  =vendor_enhancements --------------------------------------------------------------------------------------------------
+  NOTE: Fix issues, and switch some vendor specific nicities on/off
+  ----------------------------------------------------------------------------------------------------------------------- */
+  body {
+    -webkit-text-size-adjust : 100%; 
+    -ms-text-size-adjust : 100%;
+    text-rendering: optimizeLegibility; /* using kerning and ligatures http://www.aestheticallyloyal.com/public/optimize-legibility/ */ }
+
+  /* fix safari to stop it rendering text too fat in some cases (usually light text on dark backgrounds)
+     http://orderedlist.com/our-writing/blog/articles/webkit-font-smoothing/ */
+  body { -webkit-font-smoothing: antialiased; }
+
+  a:link { 
+    -webkit-tap-highlight-color : #999; }
+  ::-webkit-selection,
+  ::-moz-selection,
+  ::selection { 
+    background : #999; color : #fff; text-shadow : none; }
+   
+  /* kill input=search default styling on webkit
+  input[type=search] {
+    -webkit-appearance : none; }
+  input[type="search"]::-webkit-search-decoration, 
+  input[type="search"]::-webkit-search-cancel-button {
+    display : none; } */
+  ::-webkit-input-placeholder,
+  input:-moz-placeholder {
+    padding : 10px;
+    font-size : .875em; line-height : 1.4; }
+  
+  /* get better quality images on IE7/IEmob7 */
+  .ie7 img, .iem7 img { 
+    -ms-interpolation-mode : bicubic; }
+
+  input, textarea {
+    -webkit-box-sizing : border-box;
+    -moz-box-sizing : border-box;
+    -o-box-sizing : border-box;
+    -ms-box-sizing : border-box;
+    box-sizing : border-box; }
+     
+/*
+  =typography -----------------------------------------------------------------------------------------------------------
+   NOTE:       Found that margin-top applied to everything is a pain - it often messes up layout and requires jumping
+               through hoops to fix, so I've stopped doing this as a default and now add top margin manually when required.
+   REFERENCE:  Based on http://alistapart.com/articles/settingtypeontheweb/
+                        http://24ways.org/2006/compose-to-a-vertical-rhythm/
+  ----------------------------------------------------------------------------------------------------------------------- */
+   
+  /* custom fonts
+   * The following fonts included are copyrighted by the vendor listed below.
+   * @vendor:     Anton Koovit
+   * @vendorurl:  http://anton.korkork.com/
+   * @licenseurl: http://www.fontsquirrel.com/license/arvo */
+   
+  @font-face {
+    font-family: 'ArvoRegular';
+    src: url('../fonts/Arvo-Regular-webfont.eot');
+    src: url('../fonts/Arvo-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Arvo-Regular-webfont.woff') format('woff'),
+         url('../fonts/Arvo-Regular-webfont.ttf') format('truetype'),
+         url('../fonts/Arvo-Regular-webfont.svg#ArvoRegular') format('svg');
+    font-weight: normal; font-style: normal; }
+  @font-face {
+    font-family: 'ArvoBold';
+    src: url('../fonts/Arvo-Bold-webfont.eot');
+    src: url('../fonts/Arvo-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Arvo-Bold-webfont.woff') format('woff'),
+         url('../fonts/Arvo-Bold-webfont.ttf') format('truetype'),
+         url('../fonts/Arvo-Bold-webfont.svg#ArvoRegular') format('svg');
+    font-weight: normal; font-style: normal; } /*
+  @font-face {
+    font-family: 'ArvoItalic';
+    src: url('../fonts/Arvo-Italic-webfont.eot');
+    src: url('../fonts/Arvo-Italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Arvo-Italic-webfont.woff') format('woff'),
+         url('../fonts/Arvo-Italic-webfont.ttf') format('truetype'),
+         url('../fonts/Arvo-Italic-webfont.svg#ArvoItalic') format('svg');
+    font-weight: normal; font-style: normal; }
+  @font-face {
+    font-family: 'ArvoBoldItalic';
+    src: url('../fonts/Arvo-BoldItalic-webfont.eot');
+    src: url('../fonts/Arvo-BoldItalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Arvo-BoldItalic-webfont.woff') format('woff'),
+         url('../fonts/Arvo-BoldItalic-webfont.ttf') format('truetype'),
+         url('../fonts/Arvo-BoldItalic-webfont.svg#ArvoRegular') format('svg');
+    font-weight: normal; font-style: normal; } */
+
+  /* custom fonts
+   * The following fonts included are copyrighted by the vendor listed below.
+   * @vendor:     Anton Koovit
+   * @vendorurl:  http://anton.korkork.com/
+   * @licenseurl: http://www.fontsquirrel.com/license/arvo */
+
+  @font-face {
+    font-family: 'ColaborateRegular';
+    src: url('../fonts/ColabReg-webfont.eot');
+    src: url('../fonts/ColabReg-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/ColabReg-webfont.woff') format('woff'),
+         url('../fonts/ColabReg-webfont.ttf') format('truetype'),
+         url('../fonts/ColabReg-webfont.svg#ColaborateRegular') format('svg');
+    font-weight: normal; font-style: normal; }
+  @font-face {
+    font-family: 'ColaborateBoldRegular';
+    src: url('../fonts/ColabBol-webfont.eot');
+    src: url('../fonts/ColabBol-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/ColabBol-webfont.woff') format('woff'),
+         url('../fonts/ColabBol-webfont.ttf') format('truetype'),
+         url('../fonts/ColabBol-webfont.svg#ColaborateBoldRegular') format('svg');
+    font-weight: normal; font-style: normal; } /*
+  @font-face {
+    font-family: 'ColaborateThinRegular';
+    src: url('../fonts/ColabThi-webfont.eot');
+    src: url('../fonts/ColabThi-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/ColabThi-webfont.woff') format('woff'),
+         url('../fonts/ColabThi-webfont.ttf') format('truetype'),
+         url('../fonts/ColabThi-webfont.svg#ColaborateThinRegular') format('svg');
+    font-weight: normal; font-style: normal; }
+  @font-face {
+    font-family: 'ColaborateLightRegular';
+    src: url('../fonts/ColabLig-webfont.eot');
+    src: url('../fonts/ColabLig-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/ColabLig-webfont.woff') format('woff'),
+         url('../fonts/ColabLig-webfont.ttf') format('truetype'),
+         url('../fonts/ColabLig-webfont.svg#ColaborateLightRegular') format('svg');
+    font-weight: normal; font-style: normal; }
+  @font-face {
+    font-family: 'ColaborateMediumRegular';
+    src: url('../fonts/ColabMed-webfont.eot');
+    src: url('../fonts/ColabMed-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/ColabMed-webfont.woff') format('woff'),
+         url('../fonts/ColabMed-webfont.ttf') format('truetype'),
+         url('../fonts/ColabMed-webfont.svg#ColaborateMediumRegular') format('svg');
+    font-weight: normal; font-style: normal; } */
+
+  html { /* 18px / 26px */
+     font : 18px/26px ColaborateRegular, "Helvetica Neue", Helvetica, Arial, sans-serif; }
+     
+  h1, h2, h3, h4, h5, h6 {
+    font-family : 'ArvoBold', "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-shadow : 1px 1px 1px #444, -1px -1px 1px #111; }
+  h1 {
+    color : #eee; word-spacing : .1em; }
+  h1, h2 {
+    font-size : 36px; line-height: 52px; margin: 0 0 26px 0; font-weight : normal; color : #eee; }
+  h2 {
+    font-size : 26px; margin : 45px 0 14px; padding-top : 18px; border-top : 1px solid; }
+  h3, h4, h5, h6 {
+    font-size : 18px; line-height: 26px; margin-bottom: 26px;
+    font-weight : normal; }
+  h3 {
+    margin-top : 26px; color : #fff; }
+  .nav {
+    font-family : 'ArvoBold', "Helvetica Neue", Helvetica, Arial, sans-serif; font-size : 16px; text-transform : uppercase; }
+
+  b, strong {
+    font-family : ColaborateBoldRegular, "Helvetica Neue", Helvetica, Arial, sans-serif; font-weight : normal; }
+   
+/*
+  =basic_look -----------------------------------------------------------------------------------------------------------
+  NOTE:  This section styles "default" elements, that is, how a <p> or <em> etc look by default, without
+         any page or class specific over-rides.
+  ----------------------------------------------------------------------------------------------------------------------- */
+  
+/*
+  =html =body */
+  html {
+    background : #333 url(../images/bg.png); }
+  body {
+    /*background : url(../images/baseline-26px.png);*/ color : #aaa; }
+
+/*
+  =p */
+  p + p {
+    margin-top : 26px; }
+     
+  .attributed p {
+    margin-bottom : 0; }
+  label p.error {
+    background : #c00; }
+     
+/*
+  =em =strong =del =ins =abbr =acronym =code */
+  em          { font-style : italic; }
+  strong      { font-weight : bold; }
+  del         { text-decoration : line-through; }
+  ins         { text-decoration : none; color : #006; }
+  del[title],
+  ins[title]  { cursor : help; }
+  acronym,
+  abbr        { text-decoration : none; border-bottom : none; font-style : italic; cursor : help; }
+  sup, sub    { position : relative; font-size : 75%; line-height : 0; }
+  sup         { top : -.5em; }
+  sub         { bottom : -.25em; }
+  pre, code   { font : .875em 'andale mono', 'lucida console', monospace; line-height : 1.5; }
+  pre         { margin-bottom : 1.5em; white-space : pre; white-space : pre-wrap; word-wrap : break-word; }
+  code.var    { color : #ccf; }
+
+/*
+  =ul */
+  ul {
+    margin : 0 0 26px 1.3em;
+    list-style : disc outside; }
+
+/*
+  =ol */
+  ol {
+    margin-left : 40px; list-style-position : outside;
+    counter-reset: item 0; }
+   
+/*
+  =li */
+  li {
+    margin : 0;
+    line-height : 26px; }
+  ol > li {
+    position : relative;
+    display : block; margin-bottom : 26px; }
+  ol > li:before {
+    position : absolute; left : -40px; top : -6px;
+    content: counters(item, "."); counter-increment: item 1; display : block; width : 32px; height : 32px;
+    font-size : 32px; color : #fff; background-color : rgba(255,255,255,.25); border-radius : 50%; text-align : center; line-height : 32px; }
+/*
+  =a */
+  a:link    { color : #9b9; text-decoration : none; }
+  a:visited { color : #9b9; text-decoration : none; }
+  a:hover   { text-decoration : underline; }
+  a:focus   { background-color : #ff9; color : #333; }
+  a:active  { background-color : #ff6; color : #333; }
+  :target   { outline : 3px solid #ff6; }
+ 
+/*
+  =img */
+  img {
+    display: block; max-width : 100%; }
+  #target_hilight {
+    position : absolute; }
+     
+/*
+  =div */
+  .content {
+    position : relative; width : 90%; margin : 0 auto;}
+  .content.intro {
+    margin : 3.7777777rem auto 0; }
+  #example {
+    clear : both; }
+  .examples li a {
+    margin-top : 26px; }
+     
+/*
+  =span */
+  label span {
+    display : block; }
+  label.boolean span {
+    display : inline; }
+   
+/*
+  =modules --------------------------------------------------------------------------------------------------------------
+  NOTE:       Flirting with a CSS Object Orientated approach; use classes to define the styles rather than page-based 
+              cascades. This helps ensure that "widgets" and things can be used on ANY page and still look correct.
+              I have a number of reservations with the "full" approach though, hence this watered down version.
+  REFERENCE:  http://wiki.github.com/stubbornella/oocss/faq
+  ----------------------------------------------------------------------------------------------------------------------- */
+  
+/*
+  inline images */
+  div.image {
+    padding : 8px; margin-bottom : 10px;
+    background-color : #efefef; }
+  div.image .caption {
+    display : block;
+    line-height : 18px; }
+  div.image a img {
+    display : block; margin-bottom : 6px; }
+
+/*
+  website header */
+  #site_context  {
+    margin-bottom : 0; }
+  #site_context .title {
+    margin : 9px 0 32px 0; border-top : 1px solid #fff; border-bottom : 1px solid #fff;
+    font-size : 29px; line-height : 51px; text-align : center; }
+  #site_context .rationale {
+    margin-top : -26px; margin-bottom : 26px;
+    text-align : center; }
+     
+/*
+  website footer */
+  .container.footer {
+    margin-top : 26px; padding-bottom : 52px;
+    background : rgba(0,0,0,.5) url("../images/gallery-bg-top.png") left top repeat-x; }
+  .container.footer h2 {
+    border-top : 0; }
+
+/*
+  navigation */
+  .container.nav {
+    position : absolute; top : 33px; left : 0;
+    width : 100%; }
+  .container.nav ul {
+    text-align : center; margin-left : 0; }
+  .container.nav li {
+    display : inline-block; margin-left : .5rem; padding-left : .55rem; border-left : 1px solid #555;
+    list-style-type : none; }
+  .container.nav li:first-child {
+    border-left : 0; margin-left : 0; padding-left : 0; }
+  .container.nav li a {
+    color : #999; }
+  .container.nav li.current a {
+    color : #9b9; }
+     
+/*
+  generic components */
+  .container.first,
+  .content.intro {
+    overflow : hidden; }
+
+/*
+  =pages ----------------------------------------------------------------------------------------------------------------
+         NOTE: Styling for specific pages of the site
+  ----------------------------------------------------------------------------------------------------------------------- */
+
+/* homepage
+  ----------------------------------------------------------------------------------------------------------------------- */
+  body.home #the-sell { color : #fff; }
+  body.home #example img {
+    margin : 0 auto; }
+
+  body.home .video {
+    margin-bottom : 1em;  }
+
+  body.home .gallery {
+    margin-top : -6px; padding-bottom : 6px; }
+  body.home .gallery:after {
+    content : "";
+    display : block; clear : both; }
+  body.home .content .gallery ul {
+    margin : 0; }
+  body.home .content .gallery ul.examples {
+    margin-top : -33px; }
+  body.home .gallery ul li {
+    display : inline; }
+  body.home .gallery li a {
+    float : left;
+    display : block; width : 45%; margin-left : 10%; margin-bottom : 26px;
+    -webkit-transition : all 0.25s;
+    -moz-transition : all 0.25s;
+    -o-transition : all 0.25s;
+    -ms-transition : all 0.25s;
+    transition : all 0.25s; }
+  body.home .gallery li:nth-child(2n-1) a {
+    margin-left : 0; }
+
+  body.home .gallery li a:hover,
+  body.home .gallery li a:focus {
+    box-shadow : 0 0 10px #000; cursor : pointer;
+    background-color : transparent;
+    -webkit-transform : scale(1.1);
+    -moz-transform : scale(1.1);
+    -o-transform : scale(1.1);
+    -ms-transform : scale(1.1);
+    transform : scale(1.1); }
+  body.home .image_main {
+    margin : 0; padding-bottom : 6px; /* give back what we took in the parent margin-top, to reset the baseline */
+    background : url(../images/loading.gif) 50% 50% no-repeat; }
+  body.home .image_main p {
+    margin-bottom : 0; }
+  
+  body.home .details {
+    padding-top : 26px; }
+  body.home .details strong {
+    font-weight : normal; }
+  body.home .details abbr {
+    font-style : normal; }
+  body.home .details li img {
+    margin : auto; }
+  
+  body.home .meta {
+    display : none; }
+
+  body.home .gallery .details + h3 {
+    text-indent : -999em; }
+  body.home .gallery .details ul li {
+    float : left;
+    display : block; width : 21%; margin-bottom : 19px; margin-top : 1px; margin-left : 5.33333%;
+    text-align : center; }
+  body.home .gallery .details ul li:nth-child(4n-3) {
+    margin-left : 0; }
+
+  body.home .details ul li strong {
+    display : block; }
+  body.home .details li img {
+    display : none; }
+  body.home .details ul li i {
+    font-size : 24px; line-height : 19px; }
+  body.home .details ul li span.size {
+    display : block; }
+  body.home .details ul li span.dimensions {
+    display : none; }
+     
+/* details
+  ----------------------------------------------------------------------------------------------------------------------- */
+  html.details .container.second {
+    overflow : hidden; }
+  html.details .container.second .content {
+    border-top : 1px solid #fff; margin-top : 19px;
+    overflow : hidden; }
+  html.details .container.second .content #how-it-works h2 {
+    border-top : 0; margin-top : 0; }
+
+  html.details .content.intro > p {
+    color: #fff; }
+  html.details code.js {
+    word-wrap : break-word; }
+  html.details ol,
+  html.details p + ul {
+    margin-top : 26px; }
+  html.details ol {
+    margin-bottom : 26px; }
+  html.details ol li {
+    list-style : decimal outside; }
+  html.details code {
+    background-color : transparent; color : #ccf; font-size : 14px; }
+  html.details code.default {
+    /* background-color : rgba(0,0,0,.5); padding : 0 1em; */ }
+    
+  html.details li h4 {
+    text-shadow : none; color : #fff; /* font : 18px/26px ColaborateRegular, "Helvetica Neue", Helvetica, Arial, sans-serif; */ }
+  html.details h2 + h3 {
+    margin-bottom : 0; }
+
+  html.details div.php > ul {
+    margin-left : 0; overflow : hidden; }
+  html.details div.php > ul > li {
+    margin-bottom : 26px; }
+
+  html.details .group_2 ol {
+    counter-reset: item 4 }
+
+  html.details .php li h4 {
+    font : 18px/26px ColaborateRegular, "Helvetica Neue", Helvetica, Arial, sans-serif; }
+
+  html.details #how-it-works p,
+  html.details #install p {
+    color : #d9d9d9; }
+  html.details #install code {
+    color : #ccf; margin-top : 26px; }
+    
+/* download
+  ----------------------------------------------------------------------------------------------------------------------- */
+  html.download .container.second h2 {
+    margin-top : 0; border-top : 0; }
+  html.download .container.second .content {
+    border-top : 1px solid #fff; margin-top : 45px;
+    overflow : hidden; }
+
+  html.download #changelog > h2 {
+    margin-bottom : 7px; margin-top : 45px; border-top : 1px solid #fff; }
+  html.download .release {
+    border-top : 1px dashed #999; padding-top : 7px; padding-bottom : 18px; }
+  html.download .release h3 {
+    position : relative; }
+  html.download .release h3 time {
+    position : absolute; right : 0; color : #999; text-shadow : none; }
+  html.download p + ul {
+    margin-top : 26px; }
+  html.download #other-versions h2 {
+    margin-top : 0; }
+  html.download a.download {
+    padding : 9px; border-radius : 9px;
+    background-color : #9B9; color : #fff; box-shadow : 0 0 10px rgba(0,0,0,.5);
+    -moz-transition : all .25s; }
+  html.download a.download:hover,
+  html.download a.download:focus {
+    background-color : #797; text-decoration : none; box-shadow : 0 0 5px rgba(0,0,0,.25); }
+  html.download  p.item {
+    color : #fff; }
+  html.download p.download {
+    text-align : center; }
+
+  html.download #other-versions ul {
+    margin-left : 0; }
+  html.download #other-versions li {
+    position : relative;
+    list-style-type : none; margin : 0 0 0 32px; }
+  html.download #other-versions li:before {
+    content : url(/assets/images/icon_net.png);
+    position : absolute; top : -2px; left : -32px; }
+  html.download #other-versions li:nth-child(2):before {
+    content : url(/assets/images/icon_cf.png); }
+  html.download #other-versions li:nth-child(3):before {
+    content : url(/assets/images/icon_drupal.png); }
+  html.download #other-versions li:nth-child(4):before {
+    content : url(/assets/images/icon_wordpress.png); }

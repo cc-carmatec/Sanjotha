@@ -1,0 +1,128 @@
+@import "compass/reset";
+
+/********* All MIXINS *********/
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+@mixin breakpoint($min,$max) {
+	@media (min-width: $min) and (max-width: $max) {
+		@content;
+	}
+}
+@mixin breakpoint($max) {
+	@media (max-width: $max) {
+		@content;
+	}
+}
+@mixin breakpoint($max) {
+	@media (max-width: $max) {
+		@content;
+	}
+}
+@mixin my-button($size: 15, $color: red) {
+  @include inline-block;
+  @include border-radius(5px);
+  font-size: $size + px;
+  background-color: $color;
+}
+
+/********* All variables ********/
+$font-stack:    Helvetica, sans-serif;
+$primary-color: #333;
+$page-width:1200px;
+html {
+	font-size: 62.5%;
+}
+
+body {
+	font-size:16px;
+	background: #fff;
+}
+.max{
+	max-width:$page-width;
+	margin: 0 auto;
+	padding: 20px;
+}
+.container{
+	@extend .max;
+}
+
+/*.max{
+	@include $page-width;
+	margin: 0 auto;
+}*/
+a {
+	color: #000e3f;
+	outline: none;
+	&:visited {
+		color: #002cc4;
+	}
+	&:hover, &:focus {
+		color: #dac85b;
+	}
+	&:active, .current {
+		color: #001355;
+	}
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: $font-stack;
+	color: #000;
+	font-weight: 700;
+}
+h1 { font-size: 28px; }
+h2 { font-size: 20px; }
+h3 { font-size: 20px;}
+h4 { }
+h5 { }
+h6 { }
+
+/*********************
+BREAKPOINTS
+*********************/
+
+
+/*%button {
+  @include my-button;
+}
+%alt-button {
+  @include my-button(15, green);
+}
+%big-button {
+  @include my-button(25);
+}*/
+.box { 
+	@include border-radius(10px); 
+	background: #ddd;
+	padding: 20px;
+	border:{
+		top:4px solid #333;
+		bottom:4px solid #333;
+	}
+	@include breakpoint(768px) {
+		background: red;
+	}
+	h1{
+		color: #333;
+		text-shadow:4px 1px 1px #fff;
+	}
+	p{
+		color: #888;
+		font-size: 16px;
+		line-height: 1.5;
+	}
+}
+.box2{
+	@extend .max;
+	.circle{
+		width: 100px;
+		height: 100px;
+		border-radius: 50%;
+		background: red;
+		box-shadow: inset 0px -2px 8px 0px #333;
+	}
+}
+
