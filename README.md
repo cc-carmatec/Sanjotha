@@ -13,7 +13,7 @@ The folder contains
 
 3. Location detection based on IP address folder has these implementation inside:
 
-   1. Adaptive Images
+    1. Adaptive Images
    
    https://cloud.githubusercontent.com/assets/23209949/19994840/02a6b0ee-a278-11e6-9210-860f3241c9dd.png
 
